@@ -1,0 +1,35 @@
+# File: slam.yaml
+# Description: SLAM module parameters for FR-09 using Ouster-OS1-U
+
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: True
+    do_loop_closing: True
+    publish_map_to_odom_transform: True
+    map_frame: map
+    odom_frame: odom
+    base_frame: base_link
+    scan_topic: /scan
+    qos_overrides./scan.subscriber.reliability: best_effort
+    transform_timeout: 0.2
+    tf_buffer_duration: 60.0
+    min_laser_range: 0.0
+    max_laser_range: 12.0
+
+    # Scan processing cadence
+    minimum_travel_distance: 0.25
+    minimum_travel_heading: 0.40
+
+    # Loop closure quality
+    loop_search_maximum_distance: 8.0
+    loop_match_minimum_response_coarse: 0.35
+    loop_match_minimum_response_fine: 0.45
+
+    # Continuous scan matching precision
+    correlation_search_space_resolution: 0.005
+    correlation_search_space_dimension: 0.5
+    correlation_search_space_smear_deviation: 0.05
+
+    # Reject low-quality scan matches
+    link_match_minimum_response_fine: 0.2
+    link_scan_maximum_distance: 1.5

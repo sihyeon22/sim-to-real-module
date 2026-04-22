@@ -1,0 +1,30 @@
+# File: perception_fr09.yaml
+# Description: Perception module parameters for FR-09 real naming pipeline
+
+# Odometry
+speed_imu_odom_node:
+  ros__parameters:
+    speed_topic: /carla/hero/speedometer
+    imu_topic: /raw/imu
+    clock_topic: /clock
+    odom_topic: /odom
+    odom_frame: odom
+    base_frame: base_link
+    publish_tf: true
+    use_imu_angular_velocity: true
+    invert_speed: false
+
+# PointCloud → LaserScan
+pointcloud_to_laserscan:
+  ros__parameters:
+    use_inf: true
+    target_frame: os_lidar
+    transform_tolerance: 2.0
+    min_height: -0.98
+    max_height: 0.00
+    angle_min: -3.14159
+    angle_max:  3.14159
+    angle_increment: 0.0087
+    range_min: 0.19
+    range_max: 12.0
+    qos_overrides./scan.subscriber.reliability: best_effort

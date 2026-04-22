@@ -1,0 +1,24 @@
+# File: sensor_fr09.yaml
+# Description: Static sensor transforms for FR-09 real naming pipeline
+
+# LiDAR 센서 물리적 위치 (TF: base_link → os_sensor)
+lidar_tf:
+  x: 0.456
+  y: 0.0
+  z: 1.135
+  roll: 0.0
+  pitch: 0.0
+  yaw: 0.0
+  frame_id: base_link
+  child_frame_id: os_lidar
+
+# IMU 센서 물리적 위치 (TF: base_link → os_imu)
+imu_tf:
+  x: 0.456
+  y: 0.0
+  z: 1.135
+  roll: 0.0
+  pitch: 0.0
+  yaw: 0.0
+  frame_id: base_link
+  child_frame_id: os_imu
