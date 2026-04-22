@@ -1,10 +1,10 @@
 # sim-to-real-module
 
-Modular ROS 2/Nav2 stack for sim-to-real autonomous driving on a compact mobility platform, with CARLA integration.
+Modular ROS2/Nav2 stack for sim-to-real autonomous driving on a compact mobility platform, with CARLA integration.
 
 ## Overview
 
-This repository contains the FR-09 autonomous driving modules split into small ROS 2 workspaces.
+This repository contains the FR-09 autonomous driving modules split into small ROS2 workspaces.
 
 The stack is organized around two main pipelines:
 
@@ -33,7 +33,8 @@ fr09_module/
 └── nav2_gui_ws/
 ```
 
-Each directory is an independent colcon workspace. Build artifacts such as `build/`, `install/`, and `log/` are intentionally excluded from Git.
+Each directory is an independent colcon workspace.
+Build artifacts such as `build/`, `install/`, and `log/` are intentionally excluded from Git.
 
 ## Modules
 
@@ -53,7 +54,7 @@ Each directory is an independent colcon workspace. Build artifacts such as `buil
 
 Sensor bridge output:
 
-- `/raw/points`
+- `/raw/lidar`
 - `/raw/imu`
 
 Perception output:
@@ -61,7 +62,7 @@ Perception output:
 - `/scan`
 - `/odom`
 - `odom -> base_link`
-- `base_link -> os_sensor`
+- `base_link -> os_lidar`
 - `base_link -> os_imu`
 
 SLAM output:
@@ -166,6 +167,16 @@ source install/setup.bash
 ros2 launch gui_pkg gui.launch.py rviz_config:=~/fr09_module/nav2_gui_ws/src/gui_pkg/rviz/slam.rviz
 ```
 
+### Notes
+
+- The SLAM launch also starts a keyboard controller. Use `w`, `a`, `s`, `d` to drive the vehicle manually and build the map.
+- For better map quality, drive **two full laps** — one along the inner course and one along the outer course.
+- Once mapping is complete, save the map with the command below. Replace `<map_name>` with the desired map name.
+
+```bash
+ros2 run nav2_map_server map_saver_cli -f ~/fr09_module/nav2_map_ws/src/map_pkg/maps/<map_name>
+```
+
 ## Pipeline 2: Nav2
 
 Use this pipeline for autonomous navigation on a saved map.
@@ -267,6 +278,11 @@ source install/setup.bash
 ros2 launch gui_pkg gui.launch.py
 ```
 
+### Notes
+
+- Once RViz opens, click the **2D Pose Estimate** button in the toolbar. Then click on the grid at the vehicle's current position and drag in the direction the vehicle is facing to set the initial pose.
+- To set a navigation goal, click the **Nav2 Goal** button in the toolbar, then click on the target position you want and drag to specify the desired heading.
+
 ## Recommended Checks
 
 Check TF:
@@ -278,7 +294,7 @@ ros2 run tf2_tools view_frames
 Expected TF tree:
 
 ```text
-map -> odom -> base_link -> os_sensor
+map -> odom -> base_link -> os_lidar
 map -> odom -> base_link -> os_imu
 ```
 
@@ -290,7 +306,7 @@ ros2 topic list
 
 Important topics:
 
-- `/raw/points`
+- `/raw/lidar`
 - `/raw/imu`
 - `/scan`
 - `/odom`
@@ -304,4 +320,3 @@ Important topics:
 - The SLAM pipeline is for live map generation.
 - The Nav2 pipeline is for autonomous driving with a saved static map.
 - CARLA bridge and `carla_ackermann_control` are expected to be available from the external CARLA ROS workspace.
-
