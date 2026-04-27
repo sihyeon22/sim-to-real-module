@@ -14,14 +14,13 @@ setup(
         ('share/' + package_name + '/launch',
             ['launch/slam.launch.py']),
         ('share/' + package_name + '/config',
-            ['config/slam_ouster.yaml']),
-            ['config/slam_vanjee.yaml'],
+            ['config/slam_ouster.yaml', 'config/slam_vanjee.yaml']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='FutureDrive',
-    maintainer_email='todo@todo.com',
-    description='Modular SLAM package for FR-09 autonomous driving',
+    maintainer_email='chyt5355@gmail.com',
+    description='SLAM package supporting multiple vehicle models and LiDAR types',
     license='Apache-2.0',
     entry_points={
         'console_scripts': [

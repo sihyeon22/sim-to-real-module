@@ -1,0 +1,14 @@
+
+sensor_bridge:
+  ros__parameters:
+    sim_mode: false
+    input_lidar_topic: "/sensing/lidar/top/pointcloud"
+    output_lidar_topic: "/raw/lidar"
+    lidar_frame: "vanjee_lidar"
+
+    input_imu_topic: "/sensing/imu/imu_data"
+    output_imu_topic: "/raw/imu"
+    imu_frame: "vanjee_imu"
+
+    input_speed_topic: "/vehicle/status/velocity_status"
+    output_speed_topic: "/raw/speed"

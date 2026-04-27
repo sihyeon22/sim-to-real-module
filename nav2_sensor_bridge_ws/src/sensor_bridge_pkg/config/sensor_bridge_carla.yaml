@@ -1,0 +1,14 @@
+
+sensor_bridge:
+  ros__parameters:
+    sim_mode: true
+    input_lidar_topic: "/carla/hero/lidar"
+    output_lidar_topic: "/raw/lidar"
+    lidar_frame: "os_lidar"
+    
+    input_imu_topic: "/carla/hero/imu"
+    output_imu_topic: "/raw/imu"
+    imu_frame: "os_imu"
+
+    input_speed_topic: "/carla/hero/speedometer"
+    output_speed_topic: "/raw/speed"
