@@ -10,7 +10,7 @@ setup(
         ('share/ament_index/resource_index/packages', ['resource/gui_pkg']),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/gui.launch.py']),
-        ('share/' + package_name + '/rviz', ['rviz/carla.rviz', 'rviz/slam.rviz']),
+        ('share/' + package_name + '/rviz', ['rviz/carla.rviz', 'rviz/slam.rviz', 'rviz/fixed_path.rviz']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
